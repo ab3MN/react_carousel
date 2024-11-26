@@ -1,4 +1,10 @@
-import { ChangeEvent, FC, KeyboardEvent } from 'react';
+import {
+  ChangeEvent,
+  Dispatch,
+  FC,
+  KeyboardEvent,
+  SetStateAction,
+} from 'react';
 import style from './styles.module.scss';
 import { IOptions } from '../../types/inputOpt';
 
@@ -7,12 +13,16 @@ interface Props {
   handleChangeOption: (e: ChangeEvent<HTMLInputElement>) => void;
   options: IOptions;
   maxitemsLength: number;
+  infinity: boolean;
+  onChangeInfinity: Dispatch<SetStateAction<boolean>>;
 }
 export const CarouselForm: FC<Props> = ({
   handleKeyDown,
   handleChangeOption,
   options,
   maxitemsLength,
+  infinity,
+  onChangeInfinity,
 }) => {
   return (
     <form className={style.input__container}>
@@ -61,6 +71,16 @@ export const CarouselForm: FC<Props> = ({
           value={options.animationDuration}
           onKeyDown={handleKeyDown}
           onChange={handleChangeOption}
+        />
+      </label>
+      <label htmlFor="infinity" className={style.label}>
+        Infinity
+        <input
+          type="checkbox"
+          id="infinity"
+          name="infinity"
+          checked={infinity}
+          onChange={() => onChangeInfinity(!infinity)}
         />
       </label>
     </form>

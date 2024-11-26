@@ -11,6 +11,8 @@ const App = () => {
     animationDuration: 1000,
   });
 
+  const [isInfinity, setIsInfinity] = useState(false);
+
   const { step, frameSize, itemWidth, animationDuration } = options;
 
   const handleKeyDown = (e: KeyboardEvent<HTMLInputElement>) => {
@@ -59,7 +61,7 @@ const App = () => {
         frameSize={frameSize}
         itemWidth={itemWidth}
         animationDuration={animationDuration}
-        infinite={true}
+        infinite={isInfinity}
       />
 
       <CarouselForm
@@ -67,6 +69,8 @@ const App = () => {
         handleChangeOption={handleChangeOption}
         options={options}
         maxitemsLength={images.length}
+        infinity={isInfinity}
+        onChangeInfinity={setIsInfinity}
       />
     </div>
   );
